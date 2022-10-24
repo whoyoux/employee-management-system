@@ -51,8 +51,8 @@ const Auth: React.FC = () => {
     if (trimmedProjectName.length <= 3)
       return toast.error("Project name must contain at least 3 character");
 
-    if (trimmedProjectName.length > 10)
-      return toast.error("Project name must contain at most 10 characters");
+    if (trimmedProjectName.length > 25)
+      return toast.error("Project name must contain at most 25 characters");
 
     createProject.mutate({
       name: projectName,

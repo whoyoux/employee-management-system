@@ -19,6 +19,18 @@ export const projectRouter = router({
         },
       });
     }),
+  getAllEmployees: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input, ctx }) => {
+      return await ctx.prisma.project.findUnique({
+        where: {
+          id: input.id,
+        },
+        select: {
+          employees: true,
+        },
+      });
+    }),
   getAll: protectedProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.project.findMany({
       where: {
@@ -42,9 +54,9 @@ export const projectRouter = router({
         });
       }
 
-      if (projectName.length >= 15) {
+      if (projectName.length >= 25) {
         throw new TRPCError({
-          message: "Project name must contain at most 15 character",
+          message: "Project name must contain at most 25 character",
           code: "BAD_REQUEST",
         });
       }
