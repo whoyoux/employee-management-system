@@ -7,7 +7,4 @@ export const employeeRouter = router({
     .query(({ input }) => {
       return `${input?.id}`;
     }),
-  getAll: protectedProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
-  }),
 });
